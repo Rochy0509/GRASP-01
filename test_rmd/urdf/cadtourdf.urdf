@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<robot xmlns="http://www.ros.org" name="cadtourdf">
+    <link name="Full_arm_assembly_objects_1">
+        <inertial>
+            <origin xyz="0.14825478496683953 -0.19608051152219394 0.02848715505235634" rpy="0.4606420867906236 1.5475077785970033 -2.4448418688901468"/>
+            <mass value="1.0"/>
+            <inertia ixx="1.0" ixy="1.0" ixz="1.0" iyy="1.0" iyz="1.0" izz="1.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.14825478496683953 -0.19608051152219394 0.02848715505235634" rpy="2.930065924609552 1.5265910824606057 0.0"/>
+            <geometry>
+                <mesh filename="package://cadtourdf/meshes/Full_arm_assembly_objects_1.stl"/>
+            </geometry>
+            <material name="material">
+                <color rgba="0.6078431372549019 0.6078431372549019 0.6078431372549019 1.0"/>
+            </material>
+        </visual>
+        <collision name="collision">
+            <origin xyz="0 0 0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="Full_arm_assembly_objects_2">
+        <inertial>
+            <origin xyz="0.08164181475390311 0.02919123895167336 0.11195876517917515" rpy="0.0 -0.0 0.0"/>
+            <mass value="1.0"/>
+            <inertia ixx="1.0" ixy="1.0" ixz="1.0" iyy="1.0" iyz="1.0" izz="1.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.08164181475390311 0.02919123895167336 0.11195876517917515" rpy="0.024912425269248493 0.06383877616341817 -2.1728304064445934E-19"/>
+            <geometry>
+                <mesh filename="package://cadtourdf/meshes/Full_arm_assembly_objects_2.stl"/>
+            </geometry>
+            <material name="material">
+                <color rgba="0.6078431372549019 0.6078431372549019 0.6078431372549019 1.0"/>
+            </material>
+        </visual>
+        <collision name="collision">
+            <origin xyz="0 0 0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="Full_arm_assembly_objects_7">
+        <inertial>
+            <origin xyz="0.010850971352341879 0.22876306200603636 0.10345274430123955" rpy="0.03773540539250354 -0.021237470378466225 -0.0024089581995568876"/>
+            <mass value="1.0"/>
+            <inertia ixx="1.0" ixy="1.0" ixz="1.0" iyy="1.0" iyz="1.0" izz="1.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.010850971352341879 0.22876306200603636 0.10345274430123955" rpy="0.06267352080905418 0.04255585913443036 -4.340738638118768E-19"/>
+            <geometry>
+                <mesh filename="package://cadtourdf/meshes/Full_arm_assembly_objects_7.stl"/>
+            </geometry>
+            <material name="material">
+                <color rgba="0.6078431372549019 0.6078431372549019 0.6078431372549019 1.0"/>
+            </material>
+        </visual>
+        <collision name="collision">
+            <origin xyz="0 0 0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="Full_arm_assembly_objects_4">
+        <inertial>
+            <origin xyz="0.14825478496683955 -0.19608051152219397 0.028487155052356355" rpy="1.6098130536934434 -0.060250956069110524 -1.6347118831651641"/>
+            <mass value="1.0"/>
+            <inertia ixx="1.0" ixy="1.0" ixz="1.0" iyy="1.0" iyz="1.0" izz="1.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.14825478496683955 -0.19608051152219397 0.028487155052356355" rpy="2.930065924609552 1.5265910824606057 -3.361232057189682E-16"/>
+            <geometry>
+                <mesh filename="package://cadtourdf/meshes/Full_arm_assembly_objects_4.stl"/>
+            </geometry>
+            <material name="material">
+                <color rgba="0.6078431372549019 0.6078431372549019 0.6078431372549019 1.0"/>
+            </material>
+        </visual>
+        <collision name="collision">
+            <origin xyz="0 0 0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="Full_arm_assembly_objects_6">
+        <inertial>
+            <origin xyz="0.01311880359273214 0.6934084995195854 -0.27074839475040463" rpy="-1.5496914654377596 0.009241380414398157 0.355466737212434"/>
+            <mass value="1.0"/>
+            <inertia ixx="1.0" ixy="1.0" ixz="1.0" iyy="1.0" iyz="1.0" izz="1.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.01311880359273214 0.6934084995195854 -0.27074839475040463" rpy="-1.5088836299874304 -0.042085667351902944 -5.556034830792788E-17"/>
+            <geometry>
+                <mesh filename="package://cadtourdf/meshes/Full_arm_assembly_objects_6.stl"/>
+            </geometry>
+            <material name="material">
+                <color rgba="0.6078431372549019 0.6078431372549019 0.6078431372549019 1.0"/>
+            </material>
+        </visual>
+        <collision name="collision">
+            <origin xyz="0 0 0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="Full_arm_assembly_objects_5">
+        <inertial>
+            <origin xyz="0.013118803592732209 -0.6934084995195855 0.18074839475040508" rpy="1.5919011881520353 -0.009241380414397725 -1.9262630640073295"/>
+            <mass value="1.0"/>
+            <inertia ixx="1.0" ixy="1.0" ixz="1.0" iyy="1.0" iyz="1.0" izz="1.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.013118803592732209 -0.6934084995195855 0.18074839475040508" rpy="1.632709023602363 0.04208566735190293 -5.556034830792787E-17"/>
+            <geometry>
+                <mesh filename="package://cadtourdf/meshes/Full_arm_assembly_objects_5.stl"/>
+            </geometry>
+            <material name="material">
+                <color rgba="0.6078431372549019 0.6078431372549019 0.6078431372549019 1.0"/>
+            </material>
+        </visual>
+        <collision name="collision">
+            <origin xyz="0 0 0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="Full_arm_assembly_objects_11">
+        <inertial>
+            <origin xyz="0.013118803592732209 -0.6934084995195848 0.20126839475040445" rpy="1.5919011881520353 -0.009241380414397754 -0.3554667372124328"/>
+            <mass value="1.0"/>
+            <inertia ixx="1.0" ixy="1.0" ixz="1.0" iyy="1.0" iyz="1.0" izz="1.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.013118803592732209 -0.6934084995195848 0.20126839475040445" rpy="1.632709023602363 0.04208566735190294 5.556034830792788E-17"/>
+            <geometry>
+                <mesh filename="package://cadtourdf/meshes/Full_arm_assembly_objects_11.stl"/>
+            </geometry>
+            <material name="material">
+                <color rgba="0.611764705882353 0.611764705882353 0.611764705882353 1.0"/>
+            </material>
+        </visual>
+        <collision name="collision">
+            <origin xyz="0 0 0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="Full_arm_assembly_objects_9">
+        <inertial>
+            <origin xyz="0.228158433072525 -0.012889458887841695 -0.38743892933983676" rpy="-3.123728068059871 0.3372237146760917 -1.6226819447193261"/>
+            <mass value="1.0"/>
+            <inertia ixx="1.0" ixy="1.0" ixz="1.0" iyy="1.0" iyz="1.0" izz="1.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="-0.22895898999490677 -0.006126189344906066 -0.38544307807983036" rpy="-3.0804469547449624 -0.018211906720774836 -1.5707963267948966"/>
+            <geometry>
+                <mesh filename="package://cadtourdf/meshes/Full_arm_assembly_objects_10.stl"/>
+            </geometry>
+            <material name="material">
+                <color rgba="0.6078431372549019 0.6078431372549019 0.6078431372549019 1.0"/>
+            </material>
+        </visual>
+        <visual>
+            <origin xyz="0.228158433072525 -0.012889458887841695 -0.38743892933983676" rpy="-3.078912959018256 0.018211907922531415 1.5707963275496193"/>
+            <geometry>
+                <mesh filename="package://cadtourdf/meshes/Full_arm_assembly_objects_9.stl"/>
+            </geometry>
+            <material name="material">
+                <color rgba="0.6078431372549019 0.6078431372549019 0.6078431372549019 1.0"/>
+            </material>
+        </visual>
+        <collision name="collision">
+            <origin xyz="0 0 0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="Full_arm_assembly_objects_3">
+        <inertial>
+            <origin xyz="0.0065820729423399504 -0.048961325255950816 0.1509371679369574" rpy="2.1816658196716867 0.0034860496814112696 -0.05231052237339786"/>
+            <mass value="1.0"/>
+            <inertia ixx="1.0" ixy="1.0" ixz="1.0" iyy="1.0" iyz="1.0" izz="1.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0065820729423399504 -0.048961325255950816 0.1509371679369574" rpy="2.2058029179300256 -0.033118664244788994 -1.3885402185169675E-17"/>
+            <geometry>
+                <mesh filename="package://cadtourdf/meshes/Full_arm_assembly_objects_3.stl"/>
+            </geometry>
+            <material name="material">
+                <color rgba="0.6078431372549019 0.6078431372549019 0.6078431372549019 1.0"/>
+            </material>
+        </visual>
+        <collision name="collision">
+            <origin xyz="0 0 0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="Full_arm_assembly_objects_8">
+        <inertial>
+            <origin xyz="0.012814925744445038 -0.6936130159249052 0.1627483947504045" rpy="1.5919011881520324 -0.009241380414398735 -0.35546673721243394"/>
+            <mass value="1.0"/>
+            <inertia ixx="1.0" ixy="1.0" ixz="1.0" iyy="1.0" iyz="1.0" izz="1.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.012814925744445038 -0.6936130159249052 0.1627483947504045" rpy="1.632709023602363 0.042085667351902924 5.556034830792787E-17"/>
+            <geometry>
+                <mesh filename="package://cadtourdf/meshes/Full_arm_assembly_objects_8.stl"/>
+            </geometry>
+            <material name="material">
+                <color rgba="0.6078431372549019 0.6078431372549019 0.6078431372549019 1.0"/>
+            </material>
+        </visual>
+        <collision name="collision">
+            <origin xyz="0 0 0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <joint name="Revolute 1" type="revolute">
+        <origin xyz="0.07252985614512537 -0.12108773716439052 0.1579312200714562" rpy="-2.1823663328590364 0.04484241983375603 -0.027169550450738187"/>
+        <parent link="Full_arm_assembly_objects_2"/>
+        <child link="Full_arm_assembly_objects_3"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-1.5707963267948966" upper="2.0943951023931953" effort="10.0" velocity="1.0"/>
+    </joint>
+    <joint name="Revolute 2" type="revolute">
+        <origin xyz="0.03648435044243831 -0.0010687248445469116 -0.09000000000001063" rpy="-1.5707963267948968 -0.8470183278458912 1.541512008681992"/>
+        <parent link="Full_arm_assembly_objects_3"/>
+        <child link="Full_arm_assembly_objects_1"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="0.0" upper="3.141592653589793" effort="10.0" velocity="1.0"/>
+    </joint>
+    <joint name="Revolute 3" type="revolute">
+        <origin xyz="0.18352467688417726 0.05157238099191666 0.036599999999999716" rpy="1.5707963267948948 1.5588301691122417 -1.2968507335360855"/>
+        <parent link="Full_arm_assembly_objects_1"/>
+        <child link="Full_arm_assembly_objects_7"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-1.5707963267948966" upper="1.5707963267948966" effort="10.0" velocity="1.0"/>
+    </joint>
+    <joint name="Revolute 4" type="revolute">
+        <origin xyz="-0.0022860862098287027 -0.03642833800547618 -0.09000000000001053" rpy="1.570796326794896 1.528156852912699 3.0789191327940832"/>
+        <parent link="Full_arm_assembly_objects_7"/>
+        <child link="Full_arm_assembly_objects_4"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-0.29670597283903605" upper="2.0943951023931953" effort="10.0" velocity="1.0"/>
+    </joint>
+    <joint name="Revolute 5" type="revolute">
+        <origin xyz="0.1825619659006806 0.05130184899333794 0.036599999999999716" rpy="-1.570796326794989 1.5588301691122417 -1.2968507335359933"/>
+        <parent link="Full_arm_assembly_objects_4"/>
+        <child link="Full_arm_assembly_objects_9"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-1.5707963267948966" upper="1.5707963267948966" effort="10.0" velocity="1.0"/>
+    </joint>
+    <joint name="Revolute 6" type="revolute">
+        <origin xyz="1.1102230246251565E-16 3.469446951953614E-16 -0.019999999999999962" rpy="0.0 3.0357660829594106E-17 -1.5707963267948968"/>
+        <parent link="Full_arm_assembly_objects_5"/>
+        <child link="Full_arm_assembly_objects_11"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-1.0471975511965976" upper="1.0471975511965976" effort="10.0" velocity="1.0"/>
+    </joint>
+    <joint name="Planar 2" type="planar">
+        <origin xyz="-0.04237025002388589 -0.001973722271055925 0.3060934936872552" rpy="-1.570796340451816 -1.552568276687783 1.528703689414869"/>
+        <parent link="Full_arm_assembly_objects_9"/>
+        <child link="Full_arm_assembly_objects_5"/>
+    </joint>
+    <joint name="Planar 3" type="planar">
+        <origin xyz="0.047550031140382115 -0.0057609422723987475 0.30609349370965916" rpy="-1.5707963265459288 -0.018228050107123753 -1.6128889778340652"/>
+        <parent link="Full_arm_assembly_objects_9"/>
+        <child link="Full_arm_assembly_objects_6"/>
+    </joint>
+    <joint name="Planar 4" type="planar">
+        <origin xyz="-0.06035430625674032 -0.001216278270788712 0.30609349368277444" rpy="1.5707963270438658 -0.018228050107123583 -1.612888977834065"/>
+        <parent link="Full_arm_assembly_objects_9"/>
+        <child link="Full_arm_assembly_objects_8"/>
+    </joint>
+</robot>

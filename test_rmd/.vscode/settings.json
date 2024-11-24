@@ -1,0 +1,4 @@
+{
+    "ros.distro": "humble",
+    "python.analysis.autoImportCompletions": true
+}
