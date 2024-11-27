@@ -14,7 +14,7 @@ def initialize_pipeline():
     """
     pipeline = rs.pipeline()
     config = rs.config()
-    config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
+    config.enable_stream(rs.stream.color, 1920, 1080, rs.format.bgr8, 30)
     pipeline.start(config)
     return pipeline
 
@@ -26,7 +26,7 @@ def get_fingers_states(hand_landmarks):
     """
     finger_states = {"Thumb": False, "Index": False, "Middle": False, "Ring": False, "Pinky": False, "FullyClosed": False}
 
-    # Thumb detection for the right hand
+    # Thumb detection
     if hand_landmarks.landmark[4].x < hand_landmarks.landmark[3].x:
         finger_states["Thumb"] = True
 
@@ -39,7 +39,6 @@ def get_fingers_states(hand_landmarks):
     finger_states["FullyClosed"] = not any(finger_states.values())
     return finger_states
 
-
 def run_pose_estimation(pipeline, holistic):
     """
     Captures a frame, runs detection, and returns pose and hand landmarks.
@@ -50,7 +49,7 @@ def run_pose_estimation(pipeline, holistic):
     frames = pipeline.wait_for_frames()
     color_frame = frames.get_color_frame()
     if not color_frame:
-        return None
+        return None, None, None
 
     # Convert to RGB
     color_image = np.asanyarray(color_frame.get_data())
@@ -58,12 +57,17 @@ def run_pose_estimation(pipeline, holistic):
 
     # Process the image with MediaPipe
     results = holistic.process(rgb_image)
-    if results.right_hand_landmarks:
-        finger_states = get_fingers_states(results.right_hand_landmarks)
-        return color_image, finger_states
-    else:
-        return color_image, None
 
+    # Get finger states for both hands
+    right_finger_states = None
+    left_finger_states = None
+
+    if results.right_hand_landmarks:
+        right_finger_states = get_fingers_states(results.right_hand_landmarks)
+    if results.left_hand_landmarks:
+        left_finger_states = get_fingers_states(results.left_hand_landmarks)
+
+    return color_image, right_finger_states, left_finger_states, results
 
 def main():
     # Initialize RealSense pipeline and MediaPipe Holistic
@@ -72,19 +76,22 @@ def main():
         try:
             while True:
                 # Get the frame and MediaPipe results
-                frame, results = run_pose_estimation(pipeline, holistic)
-                if frame is None or results is None:
+                frame, right_finger_states, left_finger_states, results = run_pose_estimation(pipeline, holistic)
+                if frame is None:
                     continue
 
-                # Draw landmarks for the right arm and hand
+                # Draw landmarks for both hands
                 annotated_frame = frame.copy()
                 if results.right_hand_landmarks:
                     mp_drawing.draw_landmarks(annotated_frame, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
-                    finger_states = get_fingers_states(results.right_hand_landmarks)
-                    print("Finger States:", finger_states)
+                    print("Right Hand Finger States:", right_finger_states)
 
+                if results.left_hand_landmarks:
+                    mp_drawing.draw_landmarks(annotated_frame, results.left_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
+                    print("Left Hand Finger States:", left_finger_states)
+
+                # Draw pose landmarks if available
                 if results.pose_landmarks:
-                    # Draw right arm connections (shoulder, elbow, wrist)
                     mp_drawing.draw_landmarks(
                         annotated_frame,
                         results.pose_landmarks,
@@ -94,7 +101,7 @@ def main():
                     )
 
                 # Show the annotated frame
-                cv2.imshow("Right Hand and Arm Tracking", annotated_frame)
+                cv2.imshow("Hand and Pose Tracking", annotated_frame)
 
                 # Exit on 'q' key
                 if cv2.waitKey(1) & 0xFF == ord('q'):

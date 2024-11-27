@@ -7,11 +7,15 @@ import cv2
 import numpy as np
 import signal
 import sys
+from pyRobotiqGripper import RobotiqGripper
 
 # Initialize MediaPipe and RealSense
 pipeline = mp.initialize_pipeline()
 mp_holistic = mp.mp.solutions.holistic
 holistic = mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5)
+
+# Initialize Robotiq Gripper
+gripper = RobotiqGripper()
 
 # Initialize Motors
 driver = rmd.CanDriver("can0")
@@ -192,6 +196,19 @@ def home_motors(motors, home_positions, motor_ids):
             time.sleep(0.1)
     print("All motors homed and zeroed.")
 
+def control_gripper(finger_state):
+    """
+    Controls the gripper based on the angle of the left hand's thumb and index fingers.
+    """
+    if finger_state.get("Thumb", False) and finger_state.get("Index", False):
+        print("Left hand: Thumb and Index are up. Closing gripper.")
+        gripper.close()
+    elif not finger_state.get("Thumb", False) and not finger_state.get("Index", False):
+        print("Left hand: Thumb and Index are down. Opening gripper.")
+        gripper.open()
+    else:
+        print("Left hand: No gripper action triggered.")
+
 def motion_test(finger_state):
     """
     Perform motor actions based on the finger state.
@@ -232,16 +249,15 @@ def motion_test(finger_state):
             for motor, pick_position in zip(motors, picking_pose)
         )
         if not at_picking_pose:
-            print("Arm is not in the picking pose. Aborting dropping motion for safety.")
+            print("Arm not at picking pose. Canceling.")
             return
 
-        print("Arm is at picking pose. Proceeding to move to dropping pose.")
+        print("Arm at picking, moving to dropping area.")
 
         # Move motors to dropping pose in the specified order
         for motor_id in [1, 2, 3, 5]:  # Order: Motor 1, 2, 3, 5
             motor = motors[motor_id - 1]
             drop_position = dropping_pose[motor_id - 1]
-            print(f"Moving Motor {motor_id} to dropping position: {drop_position}")
             motor.sendPositionAbsoluteSetpoint(drop_position, 7.5)
 
     # Index + Middle: Return to picking pose from dropping pose
@@ -266,12 +282,12 @@ def motion_test(finger_state):
             print(f"Moving Motor {motor_id} back to picking position: {pick_position}")
             motor.sendPositionAbsoluteSetpoint(pick_position, 7.5)
 
-    # Index: Move directly to picking pose
+    # Move to picking pose with index finger
     elif finger_state["Index"]:
         print("Index finger is up. Moving motors to picking pose.")
         for motor, pick_position, motor_id in zip(motors, picking_pose, motor_ids):
             current_position = motor.getMultiTurnAngle()
-            if abs(current_position - pick_position) > 0.1:  # Move only if not at picking pose
+            if abs(current_position - pick_position) > 0.1:  
                 print(f"Moving Motor {motor_id} to picking pose: {pick_position}")
                 motor.sendPositionAbsoluteSetpoint(pick_position, 10)
             else:
@@ -281,25 +297,24 @@ def motion_test(finger_state):
 plot_thread = threading.Thread(target=plot_motor_positions, daemon=True)
 plot_thread.start()
 
-# Validate and home motors
+# Validate and home motors pose before running program
 validate_home_positions(motors, home_positions, motor_ids, limits)
 home_motors(motors, home_positions, motor_ids)
 
 try:
     while True:
-        # Get finger states from MediaPipe
+        
         frames = pipeline.wait_for_frames()
         color_frame = frames.get_color_frame()
         if not color_frame:
             continue
 
-        # Convert the frame to RGB format
+        
         color_image = cv2.cvtColor(np.asanyarray(color_frame.get_data()), cv2.COLOR_BGR2RGB)
 
-        # Process the frame for holistic pose and hand detection
         results = holistic.process(color_image)
 
-        # Draw landmarks on the frame
+        
         if results.pose_landmarks:
             mp.mp.solutions.drawing_utils.draw_landmarks(
                 color_image, results.pose_landmarks, mp.mp.solutions.holistic.POSE_CONNECTIONS
@@ -308,15 +323,18 @@ try:
             mp.mp.solutions.drawing_utils.draw_landmarks(
                 color_image, results.right_hand_landmarks, mp.mp.solutions.holistic.HAND_CONNECTIONS
             )
-            # Detect finger states
+            
             finger_states = mp.get_fingers_states(results.right_hand_landmarks)
             motion_test(finger_states)
-
-        # Convert the image back to BGR for OpenCV display
+        
+        if results.left_hand_landmarks:
+            left_finger_states = mp.get_fingers_states(results.left_hand_landmarks)
+            control_gripper(left_finger_states)
+        
         color_image_bgr = cv2.cvtColor(color_image, cv2.COLOR_RGB2BGR)
         cv2.imshow('Pose and Hand Detection', color_image_bgr)
 
-        # Exit on 'a' key press
+        
         if cv2.waitKey(1) & 0xFF == ord('a'):
             break
 except KeyboardInterrupt:
