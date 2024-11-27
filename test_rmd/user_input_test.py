@@ -8,8 +8,8 @@ motors = [
     rmd.ActuatorInterface(driver, 2),  # Motor 2
     rmd.ActuatorInterface(driver, 3),  # Motor 3
     rmd.ActuatorInterface(driver, 4),  # Motor 4
-    # rmd.ActuatorInterface(driver, 5),  # Motor 5
-    # rmd.ActuatorInterface(driver, 6),  # Motor 5
+    rmd.ActuatorInterface(driver, 5),  # Motor 5
+    rmd.ActuatorInterface(driver, 6),  # Motor 5
     # rmd.ActuatorInterface(driver, 7),  # Motor 5
 
 ]
@@ -33,7 +33,7 @@ def home_motors(motors, home_positions):
     print("All motors homed and zeroed")
 
 # Example home positions for each motor
-home_positions = [341, 150, 339, 240]# 286, 350]  # Adjust these as needed for each motor's unique home position
+home_positions = [340, 210, 308, 445, 290, 352]  # Adjust these as needed for each motor's unique home position
 
 # Home all motors
 home_motors(motors, home_positions)
@@ -51,7 +51,7 @@ try:
             continue
 
         # Send position command to selected motor
-        motors[motor_id - 1].sendPositionAbsoluteSetpoint(angle, 30)
+        motors[motor_id - 1].sendPositionAbsoluteSetpoint(angle, 10)
         print(f"Motor {motor_id} moved to {angle}°")
 
         # Option to exit loop

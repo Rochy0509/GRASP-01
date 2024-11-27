@@ -16,9 +16,9 @@ motors = [
     rmd.ActuatorInterface(driver, 2),  # Motor 2
     rmd.ActuatorInterface(driver, 3),  # Motor 3
     rmd.ActuatorInterface(driver, 4),  # Motor 4
-    # rmd.ActuatorInterface(driver, 5),  # Motor 5
-    # rmd.ActuatorInterface(driver, 6),  # Motor 6
-    # rmd.ActuatorInterface(driver, 7),  # Motor 7
+    rmd.ActuatorInterface(driver, 5),  # Motor 5
+    rmd.ActuatorInterface(driver, 6),  # Motor 6
+    # rmd.ActuatorInterface(driver, 7)  # Motor 7
 ]
 
 # Print initial positions
@@ -26,6 +26,7 @@ print("Initial Multi-Turn Angles:")
 for motor in motors:
     try:
         print(f"Motor {motor.getCanId()}: {motor.getMultiTurnAngle()}")
+        sleep(0.02)
     except rmd.ProtocolException as e:
         print(f"Error reading angle for Motor {motor.getCanId()}: {e}")
 
